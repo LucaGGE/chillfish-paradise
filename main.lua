@@ -19,9 +19,9 @@ function love.keypressed(key)
     if key == "f11" then
         fullscreen = not fullscreen
         love.window.setFullscreen(fullscreen)
-        g.window_width, g.window_height = pixel_adjust(love.graphics.getDimensions())
+        --g.window_width, g.window_height = pixel_adjust(love.graphics.getDimensions())
     else
-        g.game_state:manage_input(key)
+        --g.game_state:manage_input(key)
     end
 end
 
@@ -31,14 +31,14 @@ function love.load()
     {resizable=true, vsync=0, minwidth=400, minheight=300}
     )
 
-    g.game_state:init()
+    --g.game_state:init()
 end
 
 function love.update(dt)
     Timer.update(dt)
-    g.game_state:update()
+    --g.game_state:update()
 end
 
 function love.draw()
-    g.game_state:draw()
+    --g.game_state:draw()
 end
