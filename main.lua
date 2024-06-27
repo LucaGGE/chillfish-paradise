@@ -103,7 +103,7 @@ function love.draw()
 
     -- Reset default canvas and draw g.canvas_final on the screen, with g.camera offset.
     love.graphics.setCanvas()
-    love.graphics.clear(173/255, 200/255, 242/255)
+    love.graphics.clear(170/255, 235/255, 218/255)
 
     -- canvas is drawn at the center of the window
     love.graphics.draw(
