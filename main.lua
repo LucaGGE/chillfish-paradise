@@ -20,10 +20,16 @@ canvas = love.graphics.newCanvas(320, 640)
 IMG = {
     ['skybox'] = love.graphics.newImage('graphics/skybox.png'),
     ['clouds'] = love.graphics.newImage('graphics/clouds.png'),
-    ['sea'] = love.graphics.newImage('graphics/sea.png')
+    ['sea'] = love.graphics.newImage('graphics/sea.png'),
+    ['house'] = love.graphics.newImage('graphics/house.png')
 }
 
 last_block_topleft = IMG['skybox']:getWidth() - canvas_width
+
+-- table to keep track of objects scale
+scales = {
+    ['house'] = 1
+}
 
 -- variable for storing and clearing keys pressed each update
 keys_pressed = {}
@@ -40,6 +46,10 @@ function love.keypressed(key)
         --g.canvas_width, g.canvas_height = pixel_adjust(love.graphics.getDimensions())
     elseif key == "x" then
         love.event.quit()
+    elseif key == "up" then
+        scales['house'] = scales['house'] + 0.1
+    elseif key == "down" then
+        scales['house'] = scales['house'] - 0.1
     else
         --g.game_state:manage_input(key)
     end
@@ -95,6 +105,7 @@ function love.draw()
     love.graphics.draw(IMG['skybox'], skybox_x, 0)
     love.graphics.draw(IMG['clouds'], clouds_x, 0)
     love.graphics.draw(IMG['sea'], 0, 0)
+    love.graphics.draw(IMG['house'], skybox_x + 350, 300, 0, scales['house'])
     
     -- drawing in a loop all the elements to be drawn on screen, removing dead ones
     --for i, img in ipairs(render_group) do
