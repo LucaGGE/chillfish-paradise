@@ -10,11 +10,11 @@ GAME_TITLE = 'Chillfish Paradise'
 love.window.setTitle(GAME_TITLE)
 love.graphics.setDefaultFilter("nearest", "nearest")
 canvas_width = 320 -- screen size must be == odd number to have perfect pixels
-canvas_height = 640
+canvas_height = 540
 window_width = canvas_width * SIZE_MULTIPLIER
 window_height = canvas_height * SIZE_MULTIPLIER
 fullscreen = true
-canvas = love.graphics.newCanvas(320, 640)
+canvas = love.graphics.newCanvas(canvas_width, canvas_height)
 
 -- game images
 IMG = {
@@ -58,8 +58,9 @@ end
 function love.load()
     -- game screen and tile settings
     GAME_SCREEN = love.window.setMode(
-    canvas_width, window_height,
-    {resizable=true, vsync=0, minwidth= canvas_width * SIZE_MULTIPLIER, minheight= canvas_height * SIZE_MULTIPLIER}
+    window_width, window_height,
+    {resizable=true, vsync=0,
+    minwidth= canvas_width * SIZE_MULTIPLIER, minheight= canvas_height * SIZE_MULTIPLIER}
     )
 
     love.window.setFullscreen(fullscreen)
@@ -106,6 +107,8 @@ function love.draw()
     love.graphics.draw(IMG['clouds'], clouds_x, 0)
     love.graphics.draw(IMG['sea'], 0, 0)
     love.graphics.draw(IMG['house'], skybox_x + 350, 300, 0, scales['house'])
+
+    love.graphics.printf(skybox_x, 0, 0, canvas_width, 'left')
     
     -- drawing in a loop all the elements to be drawn on screen, removing dead ones
     --for i, img in ipairs(render_group) do
@@ -123,12 +126,4 @@ function love.draw()
     (window_height / 2) - canvas_height * SIZE_MULTIPLIER / 2,
     0, SIZE_MULTIPLIER, SIZE_MULTIPLIER
     )
-
-    -- drawing UI on top of everything + setting its color   
-    --love.graphics.setFont(FONTS["subtitle"])
-    --love.graphics.setColor(0.78, 0.96, 0.94, 1)
-    --love.graphics.print("Test", 0, 0, 0)
-
-    -- restoring default RGBA, since this function influences ALL graphics
-    --love.graphics.setColor(1, 1, 1, 1)
 end
