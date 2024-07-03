@@ -20,7 +20,6 @@ canvas = love.graphics.newCanvas(canvas_width, canvas_height)
 IMG = {
     ['skybox'] = love.graphics.newImage('graphics/skybox.png'),
     ['clouds'] = love.graphics.newImage('graphics/clouds.png'),
-    ['sea'] = love.graphics.newImage('graphics/sea.png'),
     ['house'] = love.graphics.newImage('graphics/house.png')
 }
 
@@ -105,7 +104,6 @@ function love.draw()
     
     love.graphics.draw(IMG['skybox'], skybox_x, 0)
     love.graphics.draw(IMG['clouds'], clouds_x, 0)
-    love.graphics.draw(IMG['sea'], 0, 0)
     love.graphics.draw(IMG['house'], skybox_x + 350, 300, 0, scales['house'])
 
     love.graphics.printf(skybox_x, 0, 0, canvas_width, 'left')
@@ -117,7 +115,7 @@ function love.draw()
 
     -- Reset default canvas and draw g.canvas_final on the screen, with g.camera offset.
     love.graphics.setCanvas()
-    love.graphics.clear(170/255, 235/255, 218/255)
+    love.graphics.clear(145/255, 180/255, 255/255)
 
     -- canvas is drawn at the center of the window
     love.graphics.draw(
